@@ -7,6 +7,10 @@ public abstract class Enemy : MonoBehaviour
     public void Init(Transform target, float moveSpeed)
     {
         MoveSpeed = moveSpeed;
-        GetComponent<EnemyMover>().Init(target, MoveSpeed);
+
+        if (TryGetComponent(out EnemyMover enemyMover))
+        {
+            enemyMover.GetComponent<EnemyMover>().Init(target, MoveSpeed);
+        }
     }
 }
