@@ -5,10 +5,9 @@ using UnityEngine.Serialization;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Transform _target;
-    [SerializeField] private EnemyType _enemyType;
     [SerializeField] private int _timeStep = 2;
-    [SerializeField] private WarriorCreator _warriorCreator;
-    [SerializeField] private MagCreator _magCreator;
+    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Creator _creator;
 
     private bool _isWork = true;
     
@@ -23,17 +22,7 @@ public class Spawner : MonoBehaviour
         
         while (_isWork)
         {
-            switch (_enemyType)
-            {
-                case EnemyType.Warrior:
-                    _warriorCreator.Create(_target, transform.position);
-                    break;
-                
-                case EnemyType.Mag:
-                    _magCreator.Create(_target, transform.position);
-                    break;
-            }
-            
+            _creator.Create(_enemy, _target, transform.position);
             yield return waitForSeconds;
         }
     }

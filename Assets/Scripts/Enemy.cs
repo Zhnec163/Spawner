@@ -1,16 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyMover))]
 public abstract class Enemy : MonoBehaviour
 {
-    protected float MoveSpeed;
-
-    public void Init(Transform target, float moveSpeed)
+    public void Init(Vector3 position, Transform target)
     {
-        MoveSpeed = moveSpeed;
-
+        transform.position = position;
+        
         if (TryGetComponent(out EnemyMover enemyMover))
         {
-            enemyMover.GetComponent<EnemyMover>().Init(target, MoveSpeed);
+            enemyMover.Init(target);
         }
     }
 }

@@ -9,10 +9,9 @@ public class EnemyMover : Mover
         Move();
     }
 
-    public void Init(Transform target, float speed)
+    public void Init(Transform target)
     {
         _target = target;
-        Speed = speed;
     }
 
     protected override void Move()
